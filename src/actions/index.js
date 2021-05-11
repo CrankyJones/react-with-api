@@ -13,14 +13,15 @@ export const getHeadlinesFailure = (error) => ({
   type: c.GET_HEADLINES_FAILURE,
   error
 });
-
+console.log(process.env.REACT_APP_API_KEY);
 export const makeApiCall = () => {
   return dispatch => {
     dispatch(requestHeadlines);
-      return fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_API_KEY}`)
-    .then(response => response.JSON())
+    return fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_API_KEY}`)
+    .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
+        console.log(jsonifiedResponse)
         dispatch(getHeadlinesSuccess(jsonifiedResponse.results));
       })
     .catch((error) => {

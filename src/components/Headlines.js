@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { makeApiCall } from './actions';
+import { makeApiCall } from '.././actions';
 
 class Headlines extends React.Component {
   constructor (props) {
@@ -13,10 +13,10 @@ componentDidMount() {
 }
 
   render() {
-    const {error, isLoaded, headlines } = this.state;
+    const { error, isLoading, headlines } = this.props;
     if (error) {
       return <>Error: {error.message}</>;
-    } else if (!isLoaded) {
+    } else if (isLoading) {
       return <>Loading...</>;
     } else {
       return (
@@ -45,4 +45,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect() Headlines;
+export default connect(mapStateToProps)(Headlines);
