@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import {createStore, applyMiddleware} from 'redux';
+import reducer from './reducers';
+import middlewareExample from './middleware/middleware-example';
+
+const store = createStore(reducer, applyMiddleware(middlewareExample));
 
 ReactDOM.render(
   <React.StrictMode>
